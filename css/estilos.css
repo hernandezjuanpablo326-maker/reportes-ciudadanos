@@ -1,0 +1,406 @@
+/* ==============================
+   ESTILOS GENERALES
+============================== */
+body {
+  font-family: "Segoe UI", sans-serif;
+  margin: 0;
+  background: #f0f4fa;
+  color: #0f172a;
+  overflow-x: hidden;
+}
+
+/* ==============================
+   ANIMACIONES BASE
+============================== */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==============================
+   ENCABEZADO
+============================== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #0077cc, #00bfff);
+  color: white;
+  padding: 20px 40px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+.titulo-encabezado h1 {
+  margin: 0;
+  font-size: 24px;
+}
+.titulo-encabezado h2 {
+  margin: 4px 0 0;
+  font-size: 15px;
+  opacity: 0.9;
+}
+.logo {
+  height: 60px;
+}
+
+/* ==============================
+   FRASE PRINCIPAL
+============================== */
+.frase {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 20px;
+  font-style: italic;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/* ==============================
+   VIDEO PRINCIPAL
+============================== */
+.video-explicativo {
+  text-align: center;
+  background: white;
+  width: 80%;
+  margin: 40px auto;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+.video-container video {
+  width: 100%;
+  max-height: 500px;
+  border-radius: 10px;
+  transition: transform 0.4s;
+}
+.video-container video:hover {
+  transform: scale(1.02);
+}
+
+/* ==============================
+   CUADROS INTERACTIVOS
+============================== */
+.motivacion {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+}
+.cuadros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+.cuadro {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+.cuadro:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 118, 255, 0.3);
+}
+.cuadro img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* ==============================
+   FORMULARIO
+============================== */
+.formulario {
+  background: white;
+  width: 80%;
+  margin: 40px auto;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+.formulario form {
+  display: flex;
+  flex-direction: column;
+}
+input, select, textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: #0077cc;
+  box-shadow: 0 0 8px rgba(0, 118, 255, 0.3);
+  outline: none;
+}
+
+/* ==============================
+   BOTONES
+============================== */
+.btn-accion, .btn-enviar {
+  border: none;
+  padding: 12px 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+/* BOTÓN UBICACIÓN */
+.btn-accion {
+  background: #e6f2ff;
+  color: #0077cc;
+}
+.btn-accion:hover {
+  background: #0077cc;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* BOTÓN ENVIAR */
+.btn-enviar {
+  background: linear-gradient(to right, #0077cc, #00bfff);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 136, 255, 0.3);
+}
+.btn-enviar img {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+.btn-enviar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 136, 255, 0.5);
+}
+
+/* ==============================
+   MENSAJE DE ÉXITO
+============================== */
+.mensaje-exito {
+  margin-top: 15px;
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+}
+.oculto { display: none; }
+
+/* ==============================
+   MODALES
+============================== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal-contenido {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 700px;
+  width: 90%;
+  position: relative;
+}
+.modal video {
+  width: 100%;
+  border-radius: 10px;
+}
+.cerrar, .cerrar-img {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #0077cc;
+}
+.cerrar:hover, .cerrar-img:hover {
+  color: red;
+}
+
+/* Modal de imagen */
+.modal-contenido.imagen {
+  background: transparent;
+  box-shadow: none;
+  max-width: 90%;
+  padding: 0;
+}
+.modal-contenido.imagen img {
+  width: 100%;
+  border-radius: 10px;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+/* ==============================
+   PANEL DE ADMINISTRACIÓN FLOTANTE
+============================== */
+.btn-panel {
+  position: fixed;
+  bottom: 25px;
+  right: 30px;
+  background: linear-gradient(to right, #0077cc, #00bfff);
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 1001;
+  transition: 0.3s;
+}
+.btn-panel:hover {
+  transform: scale(1.1);
+}
+
+.admin-panel {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background: #f9fbfd;
+  box-shadow: 0 0 25px rgba(0,0,0,0.2);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(40px);
+  transition: all 0.4s ease;
+  z-index: 1000;
+}
+.admin-panel.activo {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+/* Sidebar */
+.sidebar {
+  background: #0d1b3f;
+  color: white;
+  width: 250px;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar h2 {
+  font-size: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar li {
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.sidebar li:hover, .sidebar li.active {
+  background: #203b7a;
+}
+
+/* Contenido */
+.panel-contenido {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  height: 100%;
+}
+.panel-seccion {
+  display: none;
+}
+.panel-seccion.visible {
+  display: block;
+}
+
+/* Tabla de reportes */
+.tabla-reportes {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+.tabla-reportes th {
+  background: #0077cc;
+  color: white;
+  padding: 10px;
+}
+.tabla-reportes td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+.tabla-reportes img.thumb {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.tabla-reportes img.thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Estados */
+.estado {
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+}
+.estado.pendiente { background: #f1c40f; }
+.estado.enproceso { background: #3498db; }
+.estado.atendido { background: #2ecc71; }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #0077cc;
+  color: white;
+}
+/* ================================
+   AJUSTES DE GRÁFICOS (ESTADÍSTICAS)
+================================ */
+#seccion-estadisticas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  padding: 20px;
+}
+
+#seccion-estadisticas canvas {
+  width: 70% !important;
+  max-width: 450px;
+  height: 220px !important;
+  background: #fff;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
