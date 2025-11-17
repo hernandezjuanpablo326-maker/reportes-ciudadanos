@@ -218,30 +218,121 @@
   </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="js/script.js"></script>
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getDatabase, onValue, ref } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+<!-- Librería de gráficas usada por tu panel -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDIL9GWh8EDvrneKdmH1eT6dv0U_LUChs4",
-  authDomain: "mesa-interinstitucional.firebaseapp.com",
-  databaseURL: "https://mesa-interinstitucional-default-rtdb.firebaseio.com",
-  projectId: "mesa-interinstitucional",
-  storageBucket: "mesa-interinstitucional.firebasestorage.app",
-  messagingSenderId: "84273107616",
-  appId: "1:84273107616:web:b1abb76eda57f5a5a42fc5",
-  measurementId: "G-MC03CR4H5V"
-};
+<!-- Tu script principal -->
+<script src="js/script.js"></script>
 
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+<!-- ===============================
+      FIREBASE — INTEGRACIÓN COMPLETA
+     =============================== -->
+<script type="module">
 
-let REPORTES = [];
+  /* ----------------------------
+        IMPORTAR FIREBASE SDK
+  ----------------------------- */
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+  import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
 
-// Escuchar reportes en tiempo real
-onValue(ref(db, "reportes/"), (snapshot)=>{
-  REPORTES = snapshot.val() ? Object.values(snapshot.val()) : [];
-  cargarReportesEnMapa();
-  updateIndicators();
-});
+  /* ----------------------------
+        CONFIGURACIÓN FIREBASE
+  ----------------------------- */
+  const firebaseConfig = {
+    apiKey: "AIzaSyDIL9GWh8EDvrneKdmH1eT6dv0U_LUChs4",
+    authDomain: "mesa-interinstitucional.firebaseapp.com",
+    databaseURL: "https://mesa-interinstitucional-default-rtdb.firebaseio.com",
+    projectId: "mesa-interinstitucional",
+    storageBucket: "mesa-interinstitucional.firebasestorage.app",
+    messagingSenderId: "84273107616",
+    appId: "1:84273107616:web:b1abb76eda57f5a5a42fc5",
+    measurementId: "G-MC03CR4H5V"
+  };
+
+  /* ----------------------------
+        INICIAR FIREBASE
+  ----------------------------- */
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  console.log("🔥 Firebase conectado correctamente");
+
+  /* =================================================================
+       SECCIÓN 1 — ENVIAR REPORTES DESDE EL FORMULARIO PÚBLICO
+     ================================================================= */
+
+  const form = document.getElementById("form-reporte");
+  const mensaje = document.getElementById("mensaje-exito");
+
+  form.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+
+    const tipo = document.getElementById("tipo").value;
+    const descripcion = document.getElementById("descripcion").value;
+    const dir = document.getElementById("direccion").value;
+    const fotos = document.getElementById("fotos").files;
+
+    // nombres de fotos (solo simulado)
+    let evidencia = [];
+    for (let f of fotos) evidencia.push(f.name);
+
+    const data = {
+      tipo,
+      descripcion,
+      direccion: dir || "",
+      evidencia,
+      fecha: new Date().toISOString(),
+      estado: "pendiente"
+    };
+
+    // guardar en firebase
+    await push(ref(db, "reportes/"), data);
+
+    // mensaje en pantalla
+    mensaje.classList.remove("oculto");
+    form.reset();
+    setTimeout(() => mensaje.classList.add("oculto"), 3500);
+  });
+
+
+  /* =================================================================
+       SECCIÓN 2 — CARGAR REPORTES EN EL PANEL ADMINISTRATIVO  
+     ================================================================= */
+
+  const tabla = document.querySelector("#tabla-reportes tbody");
+
+  onValue(ref(db, "reportes/"), (snapshot) => {
+    tabla.innerHTML = "";
+
+    if (!snapshot.exists()) return;
+
+    const data = snapshot.val();
+    const lista = Object.entries(data);
+
+    lista.forEach(([id, rep]) => {
+      const fila = document.createElement("tr");
+
+      fila.innerHTML = `
+        <td>${id}</td>
+        <td>${rep.tipo}</td>
+        <td>${rep.descripcion}</td>
+        <td>${rep.direccion || "-"}</td>
+        <td>${new Date(rep.fecha).toLocaleString()}</td>
+        <td>${rep.evidencia?.join("<br>") || "—"}</td>
+        <td>${rep.estado}</td>
+        <td><button class="btn-ver">Ver</button></td>
+      `;
+
+      tabla.appendChild(fila);
+    });
+
+    // actualizar gráficas si tu script.js administra los gráficos
+    if (window.actualizarGraficos) {
+      window.actualizarGraficos(lista.map(x => x[1]));
+    }
+  });
+
+</script>
+
 </body>
 </html>
