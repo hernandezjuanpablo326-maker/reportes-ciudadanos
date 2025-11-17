@@ -218,5 +218,30 @@
   </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="js/script.js"></script>
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { getDatabase, onValue, ref } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDIL9GWh8EDvrneKdmH1eT6dv0U_LUChs4",
+  authDomain: "mesa-interinstitucional.firebaseapp.com",
+  databaseURL: "https://mesa-interinstitucional-default-rtdb.firebaseio.com",
+  projectId: "mesa-interinstitucional",
+  storageBucket: "mesa-interinstitucional.firebasestorage.app",
+  messagingSenderId: "84273107616",
+  appId: "1:84273107616:web:b1abb76eda57f5a5a42fc5",
+  measurementId: "G-MC03CR4H5V"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+let REPORTES = [];
+
+// Escuchar reportes en tiempo real
+onValue(ref(db, "reportes/"), (snapshot)=>{
+  REPORTES = snapshot.val() ? Object.values(snapshot.val()) : [];
+  cargarReportesEnMapa();
+  updateIndicators();
+});
 </body>
 </html>
