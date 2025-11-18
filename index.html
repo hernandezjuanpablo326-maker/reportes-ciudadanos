@@ -40,36 +40,32 @@
     <p>Selecciona una acción y aprende cómo tu aporte mejora la convivencia ciudadana.</p>
 
     <div class="cuadros">
+      <!-- (mantengo tus cuadros tal cual) -->
       <div class="cuadro" data-video="videos/card1.mp4" role="button" tabindex="0">
         <img src="imagenes/cuadro1.png" alt="Contribuye al bien común" />
         <h3>Contribuye al bien común</h3>
         <p>Tu acción mantiene el orden y la convivencia en espacios públicos compartidos.</p>
       </div>
-
       <div class="cuadro" data-video="videos/card2.mp4" role="button" tabindex="0">
         <img src="imagenes/cuadro2.jpg" alt="Tu reporte es seguro y confidencial" />
         <h3>Tu reporte es seguro y confidencial</h3>
         <p>Tu identidad se protege en todo momento. Nadie sabrá quién realizó el reporte.</p>
       </div>
-
       <div class="cuadro" data-video="videos/card3.mp4" role="button" tabindex="0">
         <img src="imagenes/cuadro3.png" alt="Participa en la transformación" />
         <h3>Participa en la transformación</h3>
         <p>Haz parte del cambio positivo en tu comunidad, promoviendo el respeto y la consideración.</p>
       </div>
-
       <div class="cuadro" data-video="videos/card4.mp4" role="button" tabindex="0">
         <img src="imagenes/cuadro4.jpg" alt="Recupera tu espacio público" />
         <h3>Recupera tu espacio público</h3>
         <p>Con tu reporte ayudamos a liberar vías y zonas comunes invadidas por talleres.</p>
       </div>
-
       <div class="cuadro" data-video="videos/card5.mp4" role="button" tabindex="0">
         <img src="imagenes/cuadro5.jpg" alt="Actúa con respaldo institucional" />
         <h3>Actúa con respaldo institucional</h3>
         <p>Tu reporte será atendido por las autoridades locales de manera transparente.</p>
       </div>
-
       <div class="cuadro" data-video="videos/card6.mp4" role="button" tabindex="0">
         <img src="imagenes/cuadro6.jpg" alt="Construye conciencia ciudadana" />
         <h3>Construye conciencia ciudadana</h3>
@@ -116,92 +112,82 @@
     <div id="mensaje-exito" class="mensaje-exito oculto">✅ Reporte enviado correctamente</div>
   </section>
 
-  <!-- PANEL DE ADMINISTRACIÓN FLOTANTE -->
+  <!-- PANEL DE ADMINISTRACIÓN FLOTANTE (mantengo tu estructura) -->
   <section id="panelAdmin" class="admin-panel oculto">
-  <aside class="sidebar">
-    <h2>📋 Administrador</h2>
-    <ul>
-      <li data-section="reportes" class="active">📄 Reportes</li>
-      <li data-section="tratamiento">🧾 Tratamiento</li>
-      <li data-section="mesa">🏛️ Mesa Interinstitucional</li>
-      <li data-section="config">⚙️ Configuración</li>
-      <li data-section="usuarios">👥 Usuarios</li>
-      <li data-section="estadisticas">📊 Estadísticas</li>
-      <li id="cerrarSesion">🚪 Cerrar sesión</li>
-    </ul>
-  </aside>
+    <aside class="sidebar">
+      <h2>📋 Administrador</h2>
+      <ul>
+        <li data-section="reportes" class="active">📄 Reportes</li>
+        <li data-section="tratamiento">🧾 Tratamiento</li>
+        <li data-section="mesa">🏛️ Mesa Interinstitucional</li>
+        <li data-section="config">⚙️ Configuración</li>
+        <li data-section="usuarios">👥 Usuarios</li>
+        <li data-section="estadisticas">📊 Estadísticas</li>
+        <li id="cerrarSesion">🚪 Cerrar sesión</li>
+      </ul>
+    </aside>
 
-  <div class="panel-contenido">
+    <div class="panel-contenido">
+      <div id="seccion-reportes" class="panel-seccion visible">
+        <h2>📩 Paso 1: Recepción de reportes</h2>
+        <table id="tabla-reportes" class="tabla-reportes">
+          <thead>
+            <tr>
+              <th>ID</th><th>Tipo</th><th>Descripción</th><th>Dirección</th>
+              <th>Fecha</th><th>Evidencia</th><th>Estado</th><th>Acción</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <!-- resto secciones... (sin cambios) -->
+      <div id="seccion-tratamiento" class="panel-seccion">
+        <h2>🧾 Paso 2: Tratamiento de reportes</h2>
+        <p>Aquí se revisa la información del reporte y se coordina la atención.</p>
+      </div>
+      <div id="seccion-mesa" class="panel-seccion">
+        <h2>🏛️ Paso 3: Mesa Interinstitucional</h2>
+        <p>Los casos complejos se derivan aquí para coordinar acciones conjuntas.</p>
+        <button id="btnMesa" class="btn-ver">Instalar Mesa Interinstitucional</button>
+        <div id="estadoMesa"></div>
+      </div>
+      <div id="seccion-config" class="panel-seccion">
+        <h2>⚙️ Configuración</h2>
+        <label>Tema visual:</label>
+        <select id="tema" style="padding:6px;border-radius:8px;">
+          <option value="claro">🌞 Claro</option>
+          <option value="oscuro">🌙 Oscuro</option>
+        </select>
+        <br><br>
+        <button id="btnLimpiar" class="btn-ver">🧹 Limpiar reportes guardados</button>
+        <div id="estadoConfig" style="margin-top:10px;color:#0077cc;font-weight:bold;"></div>
+      </div>
 
-    <!-- 📄 REPORTES -->
-    <div id="seccion-reportes" class="panel-seccion visible">
-      <h2>📩 Paso 1: Recepción de reportes</h2>
-      <table id="tabla-reportes" class="tabla-reportes">
-        <thead>
-          <tr>
-            <th>ID</th><th>Tipo</th><th>Descripción</th><th>Dirección</th>
-            <th>Fecha</th><th>Evidencia</th><th>Estado</th><th>Acción</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+      <div id="seccion-usuarios" class="panel-seccion">
+        <h2>👥 Usuarios</h2>
+        <form id="formUsuario" style="margin-bottom:15px;">
+          <input type="text" id="nombreUsuario" placeholder="Nombre de usuario" required />
+          <input type="email" id="correoUsuario" placeholder="Correo" required />
+          <button type="submit" class="btn-ver">Agregar Usuario</button>
+        </form>
+        <table id="tablaUsuarios" class="tabla-reportes">
+          <thead><tr><th>#</th><th>Nombre</th><th>Correo</th><th>Acción</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div id="seccion-estadisticas" class="panel-seccion">
+        <h2>📊 Estadísticas del sistema</h2>
+        <canvas id="graficoTipos" height="160"></canvas>
+        <canvas id="graficoEstados" height="160" style="margin-top:30px;"></canvas>
+      </div>
     </div>
-
-    <!-- 🧾 TRATAMIENTO -->
-    <div id="seccion-tratamiento" class="panel-seccion">
-      <h2>🧾 Paso 2: Tratamiento de reportes</h2>
-      <p>Aquí se revisa la información del reporte y se coordina la atención.</p>
-    </div>
-
-    <!-- 🏛️ MESA -->
-    <div id="seccion-mesa" class="panel-seccion">
-      <h2>🏛️ Paso 3: Mesa Interinstitucional</h2>
-      <p>Los casos complejos se derivan aquí para coordinar acciones conjuntas.</p>
-      <button id="btnMesa" class="btn-ver">Instalar Mesa Interinstitucional</button>
-      <div id="estadoMesa"></div>
-    </div>
-
-    <!-- ⚙️ CONFIGURACIÓN -->
-    <div id="seccion-config" class="panel-seccion">
-      <h2>⚙️ Configuración</h2>
-      <label>Tema visual:</label>
-      <select id="tema" style="padding:6px;border-radius:8px;">
-        <option value="claro">🌞 Claro</option>
-        <option value="oscuro">🌙 Oscuro</option>
-      </select>
-      <br><br>
-      <button id="btnLimpiar" class="btn-ver">🧹 Limpiar reportes guardados</button>
-      <div id="estadoConfig" style="margin-top:10px;color:#0077cc;font-weight:bold;"></div>
-    </div>
-
-    <!-- 👥 USUARIOS -->
-    <div id="seccion-usuarios" class="panel-seccion">
-      <h2>👥 Usuarios</h2>
-      <form id="formUsuario" style="margin-bottom:15px;">
-        <input type="text" id="nombreUsuario" placeholder="Nombre de usuario" required />
-        <input type="email" id="correoUsuario" placeholder="Correo" required />
-        <button type="submit" class="btn-ver">Agregar Usuario</button>
-      </form>
-      <table id="tablaUsuarios" class="tabla-reportes">
-        <thead><tr><th>#</th><th>Nombre</th><th>Correo</th><th>Acción</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-
-    <!-- 📊 ESTADÍSTICAS -->
-    <div id="seccion-estadisticas" class="panel-seccion">
-      <h2>📊 Estadísticas del sistema</h2>
-      <canvas id="graficoTipos" height="160"></canvas>
-      <canvas id="graficoEstados" height="160" style="margin-top:30px;"></canvas>
-    </div>
-
-  </div>
-</section>
+  </section>
 
   <!-- BOTÓN FLOTANTE -->
   <button id="btn-admin" class="btn-panel">⚙️ Abrir Panel</button>
 
-  <!-- MODAL DE VIDEO -->
+  <!-- MODALES (mantengo) -->
   <div id="modalVideo" class="modal" aria-hidden="true">
     <div class="modal-contenido">
       <span class="cerrar">&times;</span>
@@ -209,39 +195,91 @@
     </div>
   </div>
 
-  <!-- MODAL DE IMAGEN -->
   <div id="modalImagen" class="modal" aria-hidden="true">
     <div class="modal-contenido imagen">
       <span class="cerrar-img">&times;</span>
       <img id="imagenAmpliada" src="" alt="Evidencia del reporte" />
     </div>
   </div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- scripts (orden correcto) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="js/script.js"></script>
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getDatabase, onValue, ref } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDIL9GWh8EDvrneKdmH1eT6dv0U_LUChs4",
-  authDomain: "mesa-interinstitucional.firebaseapp.com",
-  databaseURL: "https://mesa-interinstitucional-default-rtdb.firebaseio.com",
-  projectId: "mesa-interinstitucional",
-  storageBucket: "mesa-interinstitucional.firebasestorage.app",
-  messagingSenderId: "84273107616",
-  appId: "1:84273107616:web:b1abb76eda57f5a5a42fc5",
-  measurementId: "G-MC03CR4H5V"
-};
+  <!-- FIREBASE: módulo que maneja envío y lectura -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+    import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
 
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+    const firebaseConfig = {
+      apiKey: "AIzaSyDIL9GWh8EDvrneKdmH1eT6dv0U_LUChs4",
+      authDomain: "mesa-interinstitucional.firebaseapp.com",
+      databaseURL: "https://mesa-interinstitucional-default-rtdb.firebaseio.com",
+      projectId: "mesa-interinstitucional",
+      storageBucket: "mesa-interinstitucional.firebasestorage.app",
+      messagingSenderId: "84273107616",
+      appId: "1:84273107616:web:b1abb76eda57f5a5a42fc5",
+      measurementId: "G-MC03CR4H5V"
+    };
 
-let REPORTES = [];
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
 
-// Escuchar reportes en tiempo real
-onValue(ref(db, "reportes/"), (snapshot)=>{
-  REPORTES = snapshot.val() ? Object.values(snapshot.val()) : [];
-  cargarReportesEnMapa();
-  updateIndicators();
-});
+    // envío del formulario público
+    const form = document.getElementById("form-reporte");
+    const mensaje = document.getElementById("mensaje-exito");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const tipo = document.getElementById("tipo").value;
+      const descripcion = document.getElementById("descripcion").value;
+      const direccion = document.getElementById("direccion").value;
+      const fotos = document.getElementById("fotos").files;
+      const evidencia = [];
+      for (let f of fotos) evidencia.push(f.name);
+
+      const data = {
+        tipo,
+        descripcion,
+        direccion,
+        evidencia,
+        fecha: new Date().toISOString(),
+        estado: "pendiente"
+      };
+
+      await push(ref(db, "reportes/"), data);
+
+      mensaje.classList.remove("oculto");
+      form.reset();
+      setTimeout(() => mensaje.classList.add("oculto"), 3000);
+    });
+
+    // lectura para panel admin
+    const tabla = document.querySelector("#tabla-reportes tbody");
+    onValue(ref(db, "reportes/"), (snapshot) => {
+      tabla.innerHTML = "";
+      if (!snapshot.exists()) return;
+      const data = snapshot.val();
+      const lista = Object.entries(data);
+      lista.forEach(([id, rep]) => {
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+          <td>${id}</td>
+          <td>${rep.tipo}</td>
+          <td>${rep.descripcion}</td>
+          <td>${rep.direccion || "-"}</td>
+          <td>${new Date(rep.fecha).toLocaleString()}</td>
+          <td>${rep.evidencia?.join("<br>") || "—"}</td>
+          <td>${rep.estado}</td>
+          <td><button class="btn-ver">Ver</button></td>
+        `;
+        tabla.appendChild(fila);
+      });
+
+      // si tu script.js define actualizarGraficos, le paso los datos
+      if (window.actualizarGraficos) window.actualizarGraficos(lista.map(x => x[1]));
+    });
+  </script>
+
 </body>
 </html>
+
